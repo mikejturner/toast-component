@@ -13,12 +13,8 @@ function ToastProvider({ children }) {
     const id = crypto.randomUUID();
 
     function handleDismiss(toasts) {
-      const newToasts = [];
-      toasts.forEach((element) => {
-        if (element.id !== id) {
-          console.log(element.id);
-          newToasts.push(element);
-        }
+      const newToasts = toasts.filter((toast) => {
+        return toast.id !== id;
       });
       setToasts(newToasts);
     }
