@@ -12,19 +12,18 @@ const DEFAULT_MESSAGE = '';
 function ToastForm() {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState(DEFAULT_VARIANT);
-  const { handleCreateToast } = React.useContext(ToastContext);
+  const { createToast } = React.useContext(ToastContext);
+
+  function handleCreateToast(event) {
+    event.preventDefault();
+    createToast(variant, message);
+    // Reset the message and variant to defaults
+    setMessage(DEFAULT_MESSAGE);
+    setVariant(DEFAULT_VARIANT);
+  }
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        handleCreateToast({ variant, message });
-        // Reset the message and variant to defaults
-        setMessage(DEFAULT_MESSAGE);
-        setVariant(DEFAULT_VARIANT);
-      }}
-      className={styles.controlsWrapper}
-    >
+    <form onSubmit={handleCreateToast} className={styles.controlsWrapper}>
       <div className={styles.row}>
         <label
           htmlFor="message"
