@@ -12,13 +12,13 @@ const DEFAULT_MESSAGE = '';
 function ToastForm() {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState(DEFAULT_VARIANT);
-  const { addToast } = React.useContext(ToastContext);
+  const { handleCreateToast } = React.useContext(ToastContext);
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        addToast({ variant, message });
+        handleCreateToast({ variant, message });
         // Reset the message and variant to defaults
         setMessage(DEFAULT_MESSAGE);
         setVariant(DEFAULT_VARIANT);
