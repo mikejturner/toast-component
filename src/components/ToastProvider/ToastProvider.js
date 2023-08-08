@@ -12,25 +12,25 @@ function ToastProvider({ children }) {
   function handleCreateToast({ variant, message }) {
     const id = crypto.randomUUID();
 
-    function handleDismiss(toasts) {
-      const newToasts = toasts.filter((toast) => {
-        return toast.id !== id;
-      });
-      setToasts(newToasts);
-    }
-
     const newToast = {
       variant: variant,
       message: message,
       id: id,
-      handleDismiss: handleDismiss,
     };
     setToasts([...toasts, newToast]);
+  }
+
+  function handleDismiss(id) {
+    const newToasts = toasts.filter((toast) => {
+      return toast.id !== id;
+    });
+    setToasts(newToasts);
   }
 
   const value = {
     toasts,
     handleCreateToast,
+    handleDismiss,
   };
 
   return (
