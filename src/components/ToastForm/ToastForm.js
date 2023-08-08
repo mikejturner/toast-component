@@ -49,10 +49,11 @@ function ToastForm() {
           <div className={styles.label}>Variant</div>
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
             {VARIANT_OPTIONS.map((option, index) => {
+              const id = `variant-${option}`;
               return (
-                <label key={index} htmlFor={option}>
+                <label key={id} htmlFor={id}>
                   <input
-                    id={option}
+                    id={id}
                     type="radio"
                     name="variant"
                     value={option}
