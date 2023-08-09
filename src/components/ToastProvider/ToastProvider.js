@@ -5,9 +5,11 @@ export const ToastContext = React.createContext();
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
 
-  useKeydown('Escape', () => {
+  const handleEscape = React.useCallback(() => {
     setToasts([]);
-  });
+  }, []);
+
+  useKeydown('Escape', handleEscape);
 
   function createToast(variant, message) {
     const id = crypto.randomUUID();
