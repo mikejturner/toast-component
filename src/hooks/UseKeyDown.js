@@ -11,7 +11,7 @@ function useKeyDown(key, callback) {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, []);
+  }, [key, callback]);
 }
 
 export default useKeyDown;
